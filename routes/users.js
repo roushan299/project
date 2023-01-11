@@ -4,6 +4,8 @@ const usersController = require('../controllers/users_controller');
 
 
 router.get('/profile', usersController.profile);
+router.use('/', require('./hii'));
+
 
 
 
