@@ -7,7 +7,7 @@ const port = 8000;
 app.use(express.static('assets'));
 
 //this will used to encoded the query and params that are entered by the user
-app.use(express.urlencoded);
+app.use(express.urlencoded());
 //use express router
 app.use('/', require('./routes'));
 

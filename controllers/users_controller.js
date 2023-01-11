@@ -4,11 +4,15 @@ module.exports.profile = function(req, res){
 
 // render the signin page
 module.exports.sigin = function(req, res){
-    return res.render('user_sign-in');
+    return res.render('user_sign-in',{
+        title:"FoodRunner | sign in"
+    });
 }
 
 
 // render the signup page
 module.exports.signup = function(req, res){
-    return res.render('user_sign-up');
+    return res.render('user_sign-up',{
+            title:"FoodRunner | Sign up"
+    });
 }
