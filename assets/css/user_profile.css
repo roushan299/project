@@ -1,0 +1,10 @@
+body{
+    text-align: center;
+    background-color: skyblue;
+}
+
+p{
+    text-shadow: 10px;
+    font-weight: 20px;
+    color: brown;
+}

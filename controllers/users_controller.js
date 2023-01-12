@@ -1,7 +1,20 @@
 const User = require('../models/user');
 
 module.exports.profile = function(req, res){
-    return res.end('<h1>User Profile</h1>');
+    if(req.cookies.user_id){
+         User.findById(req.cookies.user_id, function(err, user){
+            if(err){console.log('!!!Error in fetching the cookies from the database!!!'); return res.redirect('/users/sign-in');}
+            if(user){
+                return res.render('user_profile',{
+                    title:"FoodRunner | User profile",
+                    user: user
+                });
+            }
+            return res.redirect('/users/sign-in');
+        });
+    }else{
+        return res.redirect('/users/sign-in');
+    }
 }
 
 // render the signin page
@@ -47,5 +60,27 @@ module.exports.create = function(req, res){
 
 //Sign in and create the session
 module.exports.createSession=function(req, res){
-    //To do later
+
+    //steps to authenticate
+    //find the user
+    User.findOne({email: req.body.email}, function(err, user){
+        if(err){console.log('!!!Error in finding the user in signing in!!!'); return}
+         //handle user found
+
+         if(user){
+             //handle password which doesn't match
+            if(user.password!=req.body.password){
+                return res.redirect('back');
+            }
+             //handle session creation
+                res.cookie('user_id', user.id);
+                return res.redirect('/users/profile');
+             
+         }else{
+             //handle user not found
+             return res.redirect('back');
+         }
+    });
+
+   
 }
