@@ -9,6 +9,8 @@ router.use('/', require('./hii'));
 router.get('/sign-in', usersController.sigin);
 router.get('/sign-up',usersController.signup);
 
+router.post('/create', usersController.create);
+
 
 
 
