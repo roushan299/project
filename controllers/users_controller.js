@@ -1,11 +1,26 @@
 const User = require('../models/user');
+const router = require('../routes');
+const passport = require('passport');
 
 module.exports.profile = function(req, res){
-    return res.end('<h1>User Profile</h1>');
+    User.findById(req.user.id, function(err, user){
+        if(err){
+            console.log('!!!Error in finding the user ---> user controller');
+            return res.redirect('/users/sign-in');
+        }
+        return res.render('user_profile',{
+            title:"FoodRunner | profile",
+            user: user
+    });
+    
+    });
 }
 
 // render the signin page
 module.exports.sigin = function(req, res){
+   if(req.isAuthenticated()){
+     return res.redirect('/users/profile');
+   }
     return res.render('user_sign-in',{
         title:"FoodRunner | sign in"
     });
@@ -14,6 +29,9 @@ module.exports.sigin = function(req, res){
 
 // render the signup page
 module.exports.signup = function(req, res){
+    if(req.isAuthenticated()){
+        return res.redirect('/users/profile');
+       }
     return res.render('user_sign-up',{
             title:"FoodRunner | Sign up"
     });
@@ -48,4 +66,5 @@ module.exports.create = function(req, res){
 //Sign in and create the session
 module.exports.createSession=function(req, res){
     //To do later
+    return res.redirect('/');
 }
