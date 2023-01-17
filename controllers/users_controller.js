@@ -68,3 +68,14 @@ module.exports.createSession=function(req, res){
     //To do later
     return res.redirect('/');
 }
+
+//sign out function to destroy the session or cookie
+module.exports.destroySession = function(req, res, next){
+    req.logout(function(err){
+        if(err){
+            console.log('!!!Error in loging out user ---> passpot!!!');
+            return next(err);
+        }
+    });
+    return res.redirect('/');
+}
