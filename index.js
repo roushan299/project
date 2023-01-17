@@ -15,8 +15,8 @@ app.use(express.static('./assets'));
 // calling expresslayouts to use layouts, headers and footers
 app.use(expressLayouts);
 //extract style and scripts from sub pages into the layouts
-//app.set('layouts extractStyle', true);
-//app.set('layout extractScripts', true);
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
 
 //this will used to encoded the query and params that are entered by the user
 app.use(express.urlencoded());
