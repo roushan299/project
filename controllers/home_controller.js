@@ -5,7 +5,7 @@ module.exports.home = function(req, res){
     //res.cookie('user_id',5);
     if(req.isAuthenticated()){
     return res.render('home',{
-        title:"FoodRunner | Dashboaed"
+        title:"FoodRunner | Dashboard"
     });
 }
     return res.redirect('/users/sign-in');
