@@ -10,6 +10,8 @@ const passport = require('passport');
 const passportLocal = require('./config/passport-local-startegy');
 // this will help to use the express layouts to manage similar pattern desgin in the views
 const expressLayouts = require('express-ejs-layouts');
+//this will help to save the session so that user cant automatically logout when server restarts
+const MongoStore = require('connect-mongo');
 //this will help to use the static file like css images etc
 app.use(express.static('./assets'));
 // calling expresslayouts to use layouts, headers and footers
@@ -26,13 +28,19 @@ app.use(cookieParser());
 //set up the view engine
 app.set('view engine', 'ejs');
 app.set('views','./views');
-
+//mongo store is used to store the session cookie in the db
 app.use(session({
   name: 'FoodRunner',
   secret:'blah',
   saveUninitialized:false,
   resave:false,
-  cookie:{maxAge:(1000*60*100)}
+  cookie:{maxAge:(1000*60*100)},
+  store: MongoStore.create({
+    mongoUrl:'mongodb://127.0.0.1:27017/test',
+    autoRemove:'disabled'
+  }, function(err){
+    console.log(err ||'connect-mongodb setup ok');
+  })
 }));
 
 app.use(passport.initialize());
