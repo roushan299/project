@@ -1,7 +1,9 @@
-
+<link rel="stylesheet" type="text/css" href="/css/header.css">
 <header>
     Page header
     <ul>
+        <div> FOODRUNNER</div>
+        <section>
         <% if(locals.user) {%>
         <li>
             <a href = "/users/profile">
@@ -19,5 +21,6 @@
         <a href ="/users/sign-up">Sign-Up</a>
     </li>
     <% } %>
+</section>
     </ul>
 </header>

@@ -7,8 +7,12 @@
     <title><%=title%></title>
 </head>
 <body>
-
-    <h1>New project  <%= title %></h1>
-    
+<div id = "feed-posts">
+    <h4>Posts</h4>
+    <form action="post/create" id = "new-post-form" method="POST">
+        <textarea name="content" cols="30"rows="3" placeholder="Type here...."></textarea>
+        <input type="submit" value="Post">
+    </form>
+</div>
 </body>
 </html>

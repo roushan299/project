@@ -1,0 +1,23 @@
+header{
+    background-color: skyblue;
+}
+
+ul{
+    display: flex;
+    justify-content: space-between;
+    background-color: skyblue;
+    text-align: center;
+}
+section{
+    height: 20px;
+    display: flex;
+    justify-content:space-around;
+    font-size: medium;
+    color: blue;
+    margin: 5px;
+    padding: 5px;
+}
+li{
+    margin: 5px;
+    padding: 5px;
+}
