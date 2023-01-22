@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%=title%></title>
-</head>
+
 <body>
+    <%if (locals.user){%>
 <div id = "feed-posts">
     <h4>Posts</h4>
     <form action="post/create" id = "new-post-form" method="POST">
@@ -14,5 +8,14 @@
         <input type="submit" value="Post">
     </form>
 </div>
+<%}%>
+<section>
+    <ul>
+        <%for (post of posts){%>
+                <li><%=post.content%>
+                <small><%= post.user.name %></small>
+                </li>
+        <%}%>
+    </ul>
+</section>
 </body>
-</html>
