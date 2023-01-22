@@ -9,13 +9,25 @@
     </form>
 </div>
 <%}%>
-<section>
-    <ul>
+<section id = "posts-list-container">
+    <ul><p>
         <%for (post of posts){%>
                 <li><%=post.content%>
                 <small><%= post.user.name %></small>
                 </li>
+        
+        <div class = "post-comments">
+            <% if(locals.user){%>
+                <form action ="/comments/create" method ="POST">
+                    <input type="text" name="content" placeholder="Type here to add your comment...">
+                    <input type="hidden" name ="post" value="<%=post._id%>">
+                    <input type="submit" value="Add comment">
+                </form>
+                
+                <%}%>
+        </div>
         <%}%>
+    </p>
     </ul>
 </section>
 </body>
