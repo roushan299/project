@@ -14,6 +14,11 @@
         <%for (post of posts){%>
                 <li><%=post.content%>
                 <small><%= post.user.name %></small>
+                <small>
+                    <% if(locals.user&&locals.user.id==post.user.id){%>
+                    <a href="/post/destroy/<%=post.id%>">X</a>
+                    <%}%>
+                </small>
                 </li>
         
         <div class = "post-comments">
