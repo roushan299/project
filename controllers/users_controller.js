@@ -3,14 +3,14 @@ const router = require('../routes');
 const passport = require('passport');
 
 module.exports.profile = function(req, res){
-    User.findById(req.user.id, function(err, user){
+    User.findById(req.params.id, function(err, user){
         if(err){
             console.log('!!!Error in finding the user ---> user controller');
             return res.redirect('/users/sign-in');
         }
         return res.render('user_profile',{
             title:"FoodRunner | profile",
-            user: user
+            profile_user: user
     });
     
     });

@@ -1,4 +1,4 @@
-//const User = require('../models/user');
+const User = require('../models/user');
 const Post = require('../models/post');
 
 module.exports.home = function(req, res){
@@ -32,10 +32,14 @@ module.exports.home = function(req, res){
         }
     })
     .exec(function(err, posts){
-        return res.render('home', {
-            title:"FoodRunner | Dashboard",
-            posts:posts
+        User.find({}, function(err, user){
+            return res.render('home', {
+                title:"FoodRunner | Dashboard",
+                posts:posts,
+                all_users:user
+            });
         });
+        
     });
 }
 
