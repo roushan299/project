@@ -12,6 +12,9 @@ const passportLocal = require('./config/passport-local-startegy');
 const expressLayouts = require('express-ejs-layouts');
 //this will help to save the session so that user cant automatically logout when server restarts
 const MongoStore = require('connect-mongo');
+// this is used for the flash messages that make user interaction good
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
 //this will help to use the static file like css images etc
 app.use(express.static('./assets'));
 // calling expresslayouts to use layouts, headers and footers
@@ -47,6 +50,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+app.use(flash());
+app.use(customMware.setflash);
 //use express router
 app.use('/', require('./routes'));
 
