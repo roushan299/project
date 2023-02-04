@@ -16,6 +16,7 @@ module.exports.create = function(req, res){
                 // }
                 post.comments.push(comment);
                 post.save();
+                req.flash('success', 'Comment on post successfully');
                 res.redirect('/');
             });
         }
@@ -29,9 +30,11 @@ module.exports.destroy = function(req, res){
             let postId = comment.post;
             comment.remove();
             Post.findByIdAndUpdate(postId,{$pull: {comments: req.params.id}}, function(err, post){
+                req.flash('success', 'Comment successfully removed');
                 return res.redirect('back');
             });
         }else{
+            req.flash('error', 'You are not allowed to delete this comment');
             return res.redirect('back');
         }
     });
