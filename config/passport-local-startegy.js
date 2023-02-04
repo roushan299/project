@@ -7,6 +7,7 @@ const User = require('../models/user');
 
 passport.use(new LocalStrategy({
     usernameField:'email',
+    //used for taking req in the call back function
     passReqToCallback: true
     },
     function( req, email, password, done){
